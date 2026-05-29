@@ -92,7 +92,8 @@ def _sync_host_caches_before_start() -> None:
     project_root = Path(__file__).resolve().parents[1]
     sync_script = project_root / "tools" / "sync_host_caches.ps1"
     if not sync_script.exists():
-        raise FileNotFoundError(f"未找到宿主机缓存同步脚本: {sync_script}")
+        print("[启动] 未找到宿主机缓存同步脚本，跳过宿主机缓存同步")
+        return
 
     print("[启动] 先同步最新宿主机缓存...")
     result = subprocess.run(
