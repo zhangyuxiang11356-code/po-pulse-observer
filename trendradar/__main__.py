@@ -39,6 +39,21 @@ from trendradar.utils.time import DEFAULT_TIMEZONE, is_same_local_date, is_withi
 from trendradar.ai import AIAnalyzer, AIAnalysisResult
 from trendradar.core.scheduler import ResolvedSchedule
 
+
+def _configure_stdio_encoding() -> None:
+    """Prefer UTF-8 console output on Windows and older shells."""
+    for stream_name in ("stdout", "stderr"):
+        stream = getattr(sys, stream_name, None)
+        if stream is None or not hasattr(stream, "reconfigure"):
+            continue
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+
+
+_configure_stdio_encoding()
+
 try:
     from scrapling.fetchers import Fetcher as ScraplingFetcher
     HAS_SCRAPLING = True
