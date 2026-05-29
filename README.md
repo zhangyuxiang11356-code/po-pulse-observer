@@ -1,34 +1,34 @@
 # PO | Pulse Observer
 
-> AI-powered trend radar for news, RSS, X, Reddit, and public web signals.
+> 一个面向新闻、RSS、X、Reddit 和公开网页信号的 AI 趋势观察系统。
 
-PO | Pulse Observer is a deployable trend-observation system based on the open-source [TrendRadar](https://github.com/sansan0/TrendRadar) project. It collects public signals, filters and clusters them with AI, and renders a daily HTML briefing.
+PO | Pulse Observer 是基于开源项目 [TrendRadar](https://github.com/sansan0/TrendRadar) 二次开发的可部署观察台。它会收集公开信号，用关键词和 AI 做筛选、聚类、研判，并生成每日 HTML 观察报告。
 
-This repository is the clean open-source edition. It includes public source configuration, prompts, templates, Docker files, and deployment scripts. It does not include private keys, cookies, tokens, runtime logs, or personal cloud credentials.
+这是一个干净的开源发行版，包含公开信源配置、提示词、模板、Docker 文件和通用部署脚本；不包含私钥、Cookie、Token、运行日志或个人云服务器凭据。
 
-## What It Does
+## 核心能力
 
-- Collects configured news, RSS, X, and Reddit sources
-- Applies keyword filtering and AI-assisted analysis
-- Generates a daily HTML report
-- Supports Docker deployment
-- Supports optional AI analysis through `AI_API_KEY`
-- Supports optional X login state through a local `secrets/x_storage_state.json`
+- 抓取配置好的新闻、RSS、X 和 Reddit 信源
+- 支持关键词过滤和 AI 辅助分析
+- 生成每日 HTML 趋势观察报告
+- 支持 Docker 部署
+- 支持通过 `AI_API_KEY` 开启 AI 分析
+- 支持通过本地 `secrets/x_storage_state.json` 使用 X 登录态
 
-## Included Sources
+## 默认信源
 
-The default source list is intentionally public and editable:
+默认信源名单是公开且可修改的：
 
-- News and RSS sources live in `config/config.yaml`
-- X watchlist lives under `social_media.sources[x-watchlist]`
-- Reddit communities live under `social_media.sources[reddit-watchlist]`
-- AI prompts live under `config/ai_analysis_prompt.txt` and `config/ai_filter/`
+- 新闻和 RSS 信源：`config/config.yaml`
+- X 观察名单：`social_media.sources[x-watchlist]`
+- Reddit 社区：`social_media.sources[reddit-watchlist]`
+- AI 提示词：`config/ai_analysis_prompt.txt` 和 `config/ai_filter/`
 
-You can keep the default watchlist, delete it, or replace it with your own.
+你可以直接使用默认信源，也可以删掉或替换成自己的观察名单。
 
-## Quick Start
+## 快速开始
 
-### Local Python
+### 本地 Python 运行
 
 ```powershell
 python -m venv .venv
@@ -37,7 +37,7 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m trendradar
 ```
 
-### Docker
+### Docker 运行
 
 ```bash
 cd docker
@@ -45,11 +45,11 @@ cp .env.example .env
 docker compose up -d --build
 ```
 
-Put real runtime secrets only in `docker/.env` or environment variables. Do not commit them.
+真实密钥只放在 `docker/.env` 或运行环境变量里，不要提交到 Git。
 
-## AI Configuration
+## AI 配置
 
-AI analysis is optional. Configure it through environment variables or `docker/.env`:
+AI 分析是可选功能。可以通过环境变量或 `docker/.env` 配置：
 
 ```text
 AI_API_KEY=
@@ -57,32 +57,32 @@ AI_MODEL=
 AI_API_BASE=
 ```
 
-`config/config.yaml` keeps `ai.api_key` empty by default. Using environment variables is recommended.
+`config/config.yaml` 里的 `ai.api_key` 默认保持为空，推荐使用环境变量或 `docker/.env` 管理密钥。
 
-## X Login State
+## X 登录态
 
-X collection can work better with a browser storage state file:
+如果需要更稳定地抓取 X，可以使用浏览器登录态文件：
 
 ```text
 secrets/x_storage_state.json
 ```
 
-This file contains cookies and must never be committed. The repository includes helper scripts in `tools/` for exporting and filtering a local browser login state.
+这个文件包含 Cookie，绝对不要提交到仓库。项目在 `tools/` 目录里提供了导出和清洗本地浏览器登录态的辅助脚本。
 
-## What Is Not Included
+## 不包含什么
 
-- Real AI keys
-- GitHub tokens
-- SSH private keys
-- X cookies or login state
-- Proxy subscriptions
-- Runtime output under `output/`
-- Personal cloud deployment records
+- 真实 AI Key
+- GitHub Token
+- SSH 私钥
+- X Cookie 或登录态
+- 代理订阅地址
+- `output/` 下的运行产物
+- 个人云服务器部署记录
 
-## Attribution
+## 与 TrendRadar 的关系
 
-This project is a customized derivative of [TrendRadar](https://github.com/sansan0/TrendRadar). The original project is licensed under GPL-3.0.
+本项目是 [TrendRadar](https://github.com/sansan0/TrendRadar) 的定制化二次开发版本。原项目采用 GPL-3.0 协议。
 
 ## License
 
-GPL-3.0. See [LICENSE](LICENSE).
+GPL-3.0。详见 [LICENSE](LICENSE)。
