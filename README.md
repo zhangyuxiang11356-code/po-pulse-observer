@@ -12,7 +12,7 @@ PO | Pulse Observer 是基于开源项目 [TrendRadar](https://github.com/sansan
 - 支持关键词过滤和 AI 辅助分析
 - 生成每日 HTML 趋势观察报告
 - 支持 Docker 部署
-- 支持通过 `AI_API_KEY` 开启 AI 分析
+- 必须配置 AI，用于筛选、翻译和趋势研判
 - 支持通过本地 `secrets/x_storage_state.json` 使用 X 登录态
 
 ## 默认信源
@@ -49,7 +49,9 @@ docker compose up -d --build
 
 ## AI 配置
 
-AI 分析是可选功能。可以通过环境变量或 `docker/.env` 配置：
+AI 配置是必需项。项目依赖 AI 完成信源筛选、内容翻译和趋势研判；没有可用的 `AI_API_KEY`，完整流程无法正常工作。
+
+可以通过环境变量或 `docker/.env` 配置：
 
 ```text
 AI_API_KEY=
