@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.py[cod]
+output/
+secrets/
+tmp_demo/
+docker/__pycache__/
+docker/.env
+docker/.env.*
+!docker/.env.example
+config/*.bak
+demo/*
+!demo/README.md
+showcase/tmp-gh-auth-test/
+tools/__pycache__/
+trendradar/**/__pycache__/
